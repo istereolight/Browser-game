@@ -40,7 +40,13 @@ const players = [
   },
 ];
 
-export function GameInfo({ className, playersCount, currentMove, isWinner, onPlayerTimeOver }) {
+export function GameInfo({
+  className,
+  playersCount,
+  currentMove,
+  isWinner,
+  onPlayerTimeOver,
+}) {
   return (
     <div
       className={clsx(
@@ -53,7 +59,6 @@ export function GameInfo({ className, playersCount, currentMove, isWinner, onPla
           key={player.id}
           playerInfo={player}
           isRight={index % 2 === 1}
-
           onTimeOver={() => onPlayerTimeOver(player.symbol)}
           isTimerRunning={currentMove === player.symbol && !isWinner}
         />
@@ -87,7 +92,7 @@ function PlayerInfo({ playerInfo, isRight, isTimerRunning, onTimeOver }) {
     if (seconds === 0) {
       onTimeOver();
     }
-  },[seconds]);
+  }, [seconds]);
 
   const getTimerColor = () => {
     if (isTimerRunning) {
