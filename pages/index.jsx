@@ -39,10 +39,16 @@ export default function HomePage() {
             <GameSymbol symbol={winnerSymbol} />
           </div>
         )}
-        <UiModal width="md" isOpen={winnerSymbol} onClose={() => console.log('click')}>
+        <UiModal
+          width="md"
+          isOpen={winnerSymbol}
+          onClose={() => console.log("click")}
+        >
           <UiModal.Header>Игра завершена!</UiModal.Header>
           <UiModal.Body>
-            <div className="text-sm">Победитель: <span className="text-teal-600">Виталий</span></div>
+            <div className="text-sm">
+              Победитель: <span className="text-teal-600">Виталий</span>
+            </div>
           </UiModal.Body>
           <UiModal.Footer>
             <UiButton size="md" variant="outline">
