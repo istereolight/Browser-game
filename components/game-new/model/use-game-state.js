@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { GAME_SYMBOLS } from "./constants";
-import { computeWinner, getNextMove } from "./model";
+import { GAME_SYMBOLS } from "../constants";
+import { computeWinner } from "./compute-winner";
+import { getNextMove } from "./get-next-move";
 
 export function useGameState(playersCount) {
   const [{ cells, currentMove, playersTimeOver }, setGameState] = useState(
