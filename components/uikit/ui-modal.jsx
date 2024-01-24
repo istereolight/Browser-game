@@ -3,15 +3,14 @@ import { createPortal } from "react-dom";
 
 /**
  *
- * @param{(
+ * @param {{
  * className: string,
  * width: 'md' | 'full',
- * isOpen: boolean,
+ * isOpen: boolean
  * onClose: Function
- * )} props
+ * }} props
  * @returns
  */
-
 export function UiModal({
   width = "md",
   className,
@@ -28,35 +27,40 @@ export function UiModal({
   if (!isOpen) {
     return null;
   }
+
   const modal = (
     <div
       onClick={handleClick}
       className={clsx(
         "fixed inset-0 bg-slate-900/60 backdrop-blur pt-10 pb-10 overflow-y-auto",
-        className,
+        className
       )}
     >
       <div
         data-id="modal"
         className={clsx(
-          " bg-white rounded-lg min-h-[320px] mx-auto relative",
-          "flex flex-col",
+          "bg-white rounded-lg min-h-[320px] mx-auto relative",
+          "flex flex-col ",
           {
-            md: "max-w-[640px] w-full pb-5",
-            full: "ml-5 mr-5",
-          }[width],
+            md: "max-w-[640px] w-full",
+            full: "mx-5",
+          }[width]
         )}
       >
         <button
           onClick={onClose}
-          className="w-8 h-8 rounded flex items-center justify-center hover:bg-white/40 bg-white/10 transition-colors absolute top-0 left-[calc(100%+12px)]"
+          className="
+            w-8 h-8 rounded  flex items-center justify-center 
+            hover:bg-white/40 bg-white/10 transition-colors
+            absolute top-0 left-[calc(100%+12px)]"
         >
-          <CrossLightIcon className={"w-4 h-4 text-white "} />
+          <CrossLightIcon className="w-4 h-4 text-white" />
         </button>
         {children}
       </div>
     </div>
   );
+
   return createPortal(modal, document.getElementById("modals"));
 }
 
@@ -65,12 +69,14 @@ UiModal.Header = function UiModalHeader({ children, className }) {
     <div className={clsx(className, "px-6 pt-6 pb-4 text-2xl")}>{children}</div>
   );
 };
+
 UiModal.Body = function UiModalBody({ children, className }) {
   return <div className={clsx(className, "px-6")}>{children}</div>;
 };
+
 UiModal.Footer = function UiModalFooter({ children, className }) {
   return (
-    <div className={clsx(className, "mt-auto px-6 flex gap-4 justify-end")}>
+    <div className={clsx(className, "mt-auto p-6 flex gap-4 justify-end")}>
       {children}
     </div>
   );

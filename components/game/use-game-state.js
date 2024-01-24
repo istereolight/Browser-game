@@ -8,30 +8,30 @@ export function useGameState(playersCount) {
       cells: new Array(19 * 19).fill(null),
       currentMove: GAME_SYMBOLS.CROSS,
       playersTimeOver: [],
-    }),
+    })
   );
 
   const winnerSequence = computeWinner(cells);
   const nextMove = getNextMove(currentMove, playersCount, playersTimeOver);
 
   const winnerSymbol =
-    nextMove === currentMove ? currentMove : cells[winnerSequence?.[0]];
+    nextMove === currentMove ? currentMove : winnerSequence?.[0];
 
   const handleCellClick = (index) => {
-    // setCurrentMove(getNextMove(currentMove)); так делать крайне нежелательно. Нельзя брать предыдущее состояние для расчета текущего
     setGameState((lastGameState) => {
       if (lastGameState.cells[index]) {
         return lastGameState;
       }
+
       return {
         ...lastGameState,
         currentMove: getNextMove(
           lastGameState.currentMove,
           playersCount,
-          lastGameState.playersTimeOver,
+          lastGameState.playersTimeOver
         ),
         cells: lastGameState.cells.map((cell, i) =>
-          i === index ? lastGameState.currentMove : cell,
+          i === index ? lastGameState.currentMove : cell
         ),
       };
     });
@@ -45,7 +45,7 @@ export function useGameState(playersCount) {
         currentMove: getNextMove(
           lastGameState.currentMove,
           playersCount,
-          lastGameState.playersTimeOver,
+          lastGameState.playersTimeOver
         ),
       };
     });

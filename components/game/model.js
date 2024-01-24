@@ -1,3 +1,14 @@
+import { MOVE_ORDER } from "./constants";
+
+export function getNextMove(currentMove, playersCount, playersTimeOver) {
+  const slicedMoveOrder = MOVE_ORDER.slice(0, playersCount).filter(
+    (symbol) => !playersTimeOver.includes(symbol)
+  );
+
+  const nextMoveIndex = slicedMoveOrder.indexOf(currentMove) + 1;
+  return slicedMoveOrder[nextMoveIndex] ?? slicedMoveOrder[0];
+}
+
 export function computeWinner(cells, sequenceSize = 5, fieldSize = 19) {
   const gap = Math.floor(sequenceSize / 2);
 
@@ -8,6 +19,7 @@ export function computeWinner(cells, sequenceSize = 5, fieldSize = 19) {
       result &&= !!cells[indexes[i]];
       result &&= cells[indexes[i]] === cells[indexes[i - 1]];
     }
+
     return result;
   }
 
@@ -27,7 +39,6 @@ export function computeWinner(cells, sequenceSize = 5, fieldSize = 19) {
     }
 
     const x = i % fieldSize;
-
     if (x < gap || x >= fieldSize - gap) {
       res.shift();
       res.shift();

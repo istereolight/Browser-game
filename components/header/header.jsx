@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logoSrc from "./logo.svg";
-import { Profile } from "../profile/profile";
+import { Profile } from "../profile";
 import { ArrowDownIcon } from "./icons/arrow-down-icon";
 import { UiButton } from "../uikit/ui-button";
 
@@ -12,8 +12,8 @@ export function Header() {
       <UiButton className="w-44" variant="primary" size="lg">
         Играть
       </UiButton>
-      <button className="ml-auto flex items-center gap-2 text-teal-600">
-        <Profile name="IshchenkoV" rating="1230" />
+      <button className="ml-auto flex items-center gap-2 text-start text-teal-600 ">
+        <Profile name="Paromovevg" rating="1230" />
         <ArrowDownIcon />
       </button>
     </header>
