@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { Listbox } from "@headlessui/react";
+import { Listbox } from "@headlessui/react";
 import clsx from "clsx";
 
 /**
@@ -18,29 +18,29 @@ export function UiSelect({ className, options, isError }) {
     setSelectedOption(option);
   };
 
-  // return (
-  //   <Listbox
-  //     className={className}
-  //     value={selectedOption}
-  //     onChange={handleSelect}
-  //   >
-  //     {({ open }) => (
-  //       <>
-  //         <div className="relative">
-  //           <Listbox.Button className={buttonClasses(isError)}>
-  //             {selectedOption ? selectedOption.label : "Select an option"}
-  //             <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-  //               <DropDownIcon isOpen={open} />
-  //             </span>
-  //           </Listbox.Button>
-  //           <Listbox.Options className="absolute z-10 mt-1 w-full bg-white rounded-md shadow-lg max-h-60 overflow-auto text-base sm:text-sm focus:outline-none">
-  //             {renderOptions(options)}
-  //           </Listbox.Options>
-  //         </div>
-  //       </>
-  //     )}
-  //   </Listbox>
-  // );
+  return (
+    <Listbox
+      className={className}
+      value={selectedOption}
+      onChange={handleSelect}
+    >
+      {({ open }) => (
+        <>
+          <div className="relative">
+            <Listbox.Button className={buttonClasses(isError)}>
+              {selectedOption ? selectedOption.label : "Select an option"}
+              <span className="absolute inset-y-0 right-0 flex items-center pr-2">
+                <DropDownIcon isOpen={open} />
+              </span>
+            </Listbox.Button>
+            <Listbox.Options className="absolute z-10 mt-1 w-full bg-white rounded-md shadow-lg max-h-60 overflow-auto text-base sm:text-sm focus:outline-none">
+              {renderOptions(options)}
+            </Listbox.Options>
+          </div>
+        </>
+      )}
+    </Listbox>
+  );
 }
 
 function DropDownIcon({ isOpen }) {
