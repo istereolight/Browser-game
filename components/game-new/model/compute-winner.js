@@ -1,15 +1,5 @@
-import { MOVE_ORDER } from "./constants";
-
-export function getNextMove(currentMove, playersCount, playersTimeOver) {
-  const slicedMoveOrder = MOVE_ORDER.slice(0, playersCount).filter(
-    (symbol) => !playersTimeOver.includes(symbol)
-  );
-
-  const nextMoveIndex = slicedMoveOrder.indexOf(currentMove) + 1;
-  return slicedMoveOrder[nextMoveIndex] ?? slicedMoveOrder[0];
-}
-
-export function computeWinner(cells, sequenceSize = 5, fieldSize = 19) {
+export function computeWinner(gameState, sequenceSize = 5, fieldSize = 19) {
+  const cells = gameState.cells;
   const gap = Math.floor(sequenceSize / 2);
 
   function compareElements(indexes) {
@@ -25,9 +15,9 @@ export function computeWinner(cells, sequenceSize = 5, fieldSize = 19) {
 
   function getSequenceIndexes(i) {
     const res = [
-      [], // -
-      [], // \
-      [], // /
+      [],
+      [],
+      [],
       [], // |
     ];
 
